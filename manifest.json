@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "windsurf注册绑卡工具",
+  "version": "1.0.0",
+  "description": "Windsurf 自动注册工具 - 自动填写表单、接收验证码、管理账号",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "downloads",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://360stat.org/*",
+    "https://windsurf.com/*",
+    "https://codeium.com/*",
+    "https://moemail.app/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Windsurf 自动注册"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://windsurf.com/*",
+        "https://codeium.com/*"
+      ],
+      "js": ["storage-config.js", "content-script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["*.js"],
+      "matches": [
+        "https://windsurf.com/*",
+        "https://codeium.com/*"
+      ]
+    }
+  ]
+}
